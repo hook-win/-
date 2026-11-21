@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>月尺银行 · 生活费管家 v2.1（实时流水演示版）</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="float.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-meal" viewBox="0 0 24 24"><path fill="currentColor" d="M3 11h18a9 9 0 0 1-5 8.1V21H8v-1.9A9 9 0 0 1 3 11zm5-8c0 1.5-1.5 1.5-1.5 3S8 7.5 8 9H6.5c0-1.5-1.5-1.5-1.5-3S6.5 4.5 6.5 3H8zm5 0c0 1.5-1.5 1.5-1.5 3S13 7.5 13 9h-1.5c0-1.5-1.5-1.5-1.5-3S11.5 4.5 11.5 3H13zm5 0c0 1.5-1.5 1.5-1.5 3S18 7.5 18 9h-1.5c0-1.5-1.5-1.5-1.5-3S16.5 4.5 16.5 3H18z"/></symbol>
+    <symbol id="i-tea" viewBox="0 0 24 24"><path fill="currentColor" d="M7 3h10l-1 4H8L7 3zm.5 6h9l-1.3 12H8.8L7.5 9zm3.7-7.8 1.4.4L11 6H9.6l1.6-4.8z"/></symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24"><path fill="currentColor" d="M4 5h13v3h2a3 3 0 0 1 0 6h-2.2A7 7 0 0 1 10 19a7 7 0 0 1-6-6.9V5zm13 5v2h2a1 1 0 0 0 0-2h-2zM4 20h13v2H4v-2z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path fill="currentColor" d="M6 2h13a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3zm0 16a1 1 0 0 0 0 2h12v-2H6zm3-12v2h8V6H9z"/></symbol>
+    <symbol id="i-bus" viewBox="0 0 24 24"><path fill="currentColor" d="M4 2h16v13H4V2zm2 3v4h5V5H6zm7 0v4h5V5h-5zM6.5 17a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5zm11 0a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5z"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path fill="currentColor" d="M2 2h3l1 4h16l-2.2 8H8.2L6.6 6H2V2zm6.5 15a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5zm9 0a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5z"/></symbol>
+    <symbol id="i-ticket" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V7zm12-1v2h2V6h-2zm0 4v2h2v-2h-2zm0 4v2h2v-2h-2z"/></symbol>
+    <symbol id="i-coin" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM9 6h1.8l1.2 2.7L13.2 6H15l-2 4.2h1.8v1.5h-2v1.1h2v1.5h-2V17h-1.6v-2.7h-2v-1.5h2v-1.1h-2v-1.5H11L9 6z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5 1.5 11h2.7v10h6.3v-6h3v6h6.3V11h2.7L12 2.5z"/></symbol>
+    <symbol id="i-jar" viewBox="0 0 24 24"><path fill="currentColor" d="M8 2h8v2H8V2zm1 3h6v1.6c2.4 1.3 4 3.8 4 6.9 0 4.4-3.1 8.5-7 8.5s-7-4.1-7-8.5c0-3.1 1.6-5.6 4-6.9V5zm-1 8h8v-1.5H8V13z"/></symbol>
+  </defs>
+</svg>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark" id="brandMark"></span>
+      <div class="brand-text">
+        <strong>月尺银行</strong>
+      </div>
+    </div>
+    <nav class="nav" id="nav">
+      <a href="#/home" data-route="home"><span class="nav-ico" data-ico="home"></span>首页总览</a>
+      <a href="#/privacy" data-route="privacy"><span class="nav-ico" data-ico="shield"></span>授权与隐私</a>
+      <a href="#/records" data-route="records"><span class="nav-ico" data-ico="receipt"></span>消费记录</a>
+      <a href="#/live" data-route="live"><span class="nav-ico" data-ico="pulse"></span>实时流水演示</a>
+      <a href="#/plan" data-route="plan"><span class="nav-ico" data-ico="target"></span>支出规划</a>
+      <a href="#/pots" data-route="pots"><span class="nav-ico" data-ico="pots"></span>资金分桶</a>
+      <a href="#/reminders" data-route="reminders"><span class="nav-ico" data-ico="bell"></span>提醒中心<span class="badge" id="remBadge" hidden></span></a>
+      <a href="#/identity" data-route="identity"><span class="nav-ico" data-ico="swap"></span>身份切换</a>
+    </nav>
+    <div class="sidebar-foot">
+      <p>授权优先 · 关怀式提醒</p>
+      <p>不干预你的任何消费决策</p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <h1 id="pageTitle">首页总览</h1>
+      <span class="sim-chip" id="simChip" hidden></span>
+      <span class="identity-chip" id="identityChip"></span>
+    </header>
+    <div id="view" class="view"></div>
+    <footer class="foot">
+      <span>由月尺银行提供生活费管理服务 · 问卷与填写数据仅存于本机浏览器</span>
+    </footer>
+  </main>
+</div>
+
+<nav class="mobilenav" id="mobileNav"></nav>
+<div class="modal-mask" id="modalMask" hidden>
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="modal-x" data-action="close-modal" aria-label="关闭"></button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+<div class="care-toast" id="careToast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2V5z"/><path d="M2 9v1c0 1.1.9 2 2 2h1"/><path d="M16 11h.01"/></svg>
+  <span></span>
+</div>
+
+<script src="js/vendor/xlsx.full.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/views.js"></script>
+<script src="js/pots.js"></script>
+<script src="js/sim.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pet-sync.js?v=5"></script>
+<script src="js/float.js"></script>
+<script src="js/pet-trigger.js"></script>
+<script src="js/bead-goal.js"></script>
+</body>
+</html>
