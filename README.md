@@ -59,8 +59,8 @@ Qinghe-LifeFee-Portable/
 - **桌宠**：C# / .NET Framework WinForms，本地回环通信（`127.0.0.1:51888`）
 - **导出**：SheetJS（`js/vendor/xlsx.full.min.js`，Apache-2.0）
 
-## 可选：启用阿里云百炼 AI
-
+## 可选：启用阿里云百炼 AI(正在开发状态，未测试bug)
+         
 便携包不包含任何 API Key。
 
 1. 把 `website/.env.example` 复制为 `website/.env`；
